@@ -5,6 +5,9 @@ This is a work in progress
 Copyright GI1MIC (2021)
 
 **   For non-commercial use only**
+
+![alt text](https://github.com/gi1mic/ADF5355_frequency_generator/blob/main/images/RC-28_Emulator.jpg?raw=true)
+
    
 ##    **Required Hardware:**
    
