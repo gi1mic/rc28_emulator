@@ -1,6 +1,8 @@
 
 # **Icom RC-28 Emulator**
-This is a work in progress
+This is a work in progress:
+- The RS-BA1 responds to the emulated encoder and switches and LED's light as they should.
+- What is not 100% is fast rotation of the encoder. This is simply because I have not figured out a good way to calculate the required accelerated value.    
 
 Copyright GI1MIC (2021)
 
@@ -94,10 +96,10 @@ Copyright GI1MIC (2021)
 	  #endif
 
 
-  further down the file around line 536 change
-`      return USB_SendStringDescriptor((uint8_t*)name, strlen(name), 0);`
+  further down the file (around line 536 change)
+`return USB_SendStringDescriptor((uint8_t*)name, strlen(name), 0);`
   to
-`      return USB_SendStringDescriptor((uint8_t*)"RC-28 0102001", strlen("RC-28 0102001"), 0);`
+`return USB_SendStringDescriptor((uint8_t*)"RC-28 0102001", strlen("RC-28 0102001"), 0);`
 
 Going by the manual the serial number should be in the format "02XXXXX" but I do not think it is checked.
 
@@ -113,6 +115,8 @@ You can always select "Arduino Leonardo - ETH" as the target if you want to re-u
  - PIN2 Encoder White 
  - PIN3 Encoder Green 
  - GND Encoder Black
+ - GND Encoder Shield
+ 
    
  - PIN8 F1 Button
  - PIN9 F1 LED
@@ -121,11 +125,11 @@ You can always select "Arduino Leonardo - ETH" as the target if you want to re-u
  - PIN 6 TX Button
  - PIN7 TX LED
 
-Other side of the buttons and LED's go to GND
+The other side of the buttons and LED's go to GND
 
 ##   **Notes:**
  - This is not a true emulation of the RC-28 as the arduino is configured to emulate both a HID and USB serial device simultaneously. 
- - The RC-28 sends it reports via USB Interrupt messages but straight HID messages seem to work just fine which is what I am using.
- - Not sure I have the response bit patterns 100% but without a RC-28 I cannot verify them other than testing them with RS-BA1.
+ - The RC-28 sends it reports via USB_Interrupt messages but straight HID messages seem to work just fine which is what I am using.
+ - Not sure I have the response bit patterns 100% but without a RC-28 I cannot verify them other than testing them against the RS-BA1 software.
  - I do not know if this will work with the IC-7610 but should you try it please let me know what happens.
  - A big thank you Philippe for his help in this project. Without his help I would never have got this to work.
