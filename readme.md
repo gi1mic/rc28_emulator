@@ -131,7 +131,7 @@ The other side of the buttons and LED's go to GND
 
 Simply plug it into a host PC running the RS-BA1 software and it will be detected just like a real RC-28.
 
-The arduino will also apear as a serial COM port on your machine. This means you can use Serial.print commands within the code to debug if you want.
+The arduino will also appear as a serial COM port on your machine. This means you can use standard "Serial.print" commands within the code to debug if you want.
 
 A real RC-28 uses a PIC18F14K50 as the processor. Microchip have some application notes and sample code for USB usage so it would probably not be a big task to port this to that processor. I think ICOM use an 128bit AES key for their firmware upload (on newer releases anyway) so do not think about trying to create a bootloader to read and flash their firmware.
 
