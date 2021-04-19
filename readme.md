@@ -14,7 +14,7 @@ Copyright GI1MIC (2021)
 -    3 x Arduino Pro Mini (32u4, 16Mhz, 5V version)
 -    3 x momentary push-to-make buttons to act as TX, F1 and F2
 -    3 x LED's to show TX, F1, F2 status
--    1 x Optical encoder (5V 600PPR with 6mm shaft)
+-    1 x Optical encoder (5V-24V 600P/R with 6mm shaft)
 -    1 x ~30mm knob for 6mm shaft preferable a machined aluminum for weight
 -    1 x enclosure of choice
 
