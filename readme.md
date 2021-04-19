@@ -129,7 +129,3 @@ Other side of the buttons and LED's go to GND
  - Not sure I have the response bit patterns 100% but without a RC-28 I cannot verify them other than testing them with RS-BA1.
  - I do not know if this will work with the IC-7610 but should you try it please let me know what happens.
  - A big thank you Philippe for his help in this project. Without his help I would never have got this to work.
- -
-
-
-
