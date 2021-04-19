@@ -1,5 +1,5 @@
 
-# **Icom RC-28 Emulator**
+# **ICOM RC-28 Emulator**
 This is a work in progress:
 - The RS-BA1 responds to the emulated encoder and switches and LED's light as they should.
 - What is not 100% is fast rotation of the encoder. This is simply because I have not figured out a good way to calculate the required accelerated value.    
