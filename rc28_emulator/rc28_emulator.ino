@@ -4,11 +4,11 @@
    Copyright GI1MIC (2021)
 
    *** For non-commercial use only ***
-   
+
    Creative Commons NonCommercial license
- 
+
     RC-28 Emulator
-    
+
     Check the readme for important info on the USB VID/PID
     and USB descriptors.
 
@@ -108,14 +108,15 @@ void setup() {
 
   RawHID.begin(Raw_HID_Buffer, sizeof(Raw_HID_Buffer));
 
-  attachInterrupt(ENCODER_PIN1, checkPosition, CHANGE);
-  attachInterrupt(ENCODER_PIN2, checkPosition, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN1), checkPosition, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN2), checkPosition, CHANGE);
 
   HIDsendBuffer[0] = 0x00;
 }
 
 //------------------------------------------------------------------------------
 void loop() {
+
 
   // Send button updates
   while (!digitalRead(F1_BUTTON)) {
@@ -128,32 +129,36 @@ void loop() {
   }
   while (!digitalRead(TX_BUTTON)) {
     HIDsendBuffer[5] = TX_MOMENTARY;
-
     RawHID.write(HIDsendBuffer, sizeof(HIDsendBuffer));
   }
 
-  // Send encoder updates
-  encoder.tick();
+
+  // Process encoder updates
   new_encoder_pos = encoder.getPosition();
-  if (encoder_pos != new_encoder_pos) {
-    //    unsigned long  t = encoder.getRPM();
-    //    if (encoder_max_rpm < t) // Figure out the max RPM
-    //      encoder_max_rpm = t;
-    //    t = encoder_max_rpm / (t * 4);
-    //    t++;                     // Need a value between 1 and 4
-    //    if (t > 5) t = 4;
-    //    HIDsendBuffer[1] = t;    // Set the speed byte
-    HIDsendBuffer[1] = 1;    // Set the speed byte
-    encoder_pos = new_encoder_pos;
-    if ( (int)encoder.getDirection() == -1 ) {
-      HIDsendBuffer[3] = 0x01;  // Down
-    } else {
-      HIDsendBuffer[3] = 0x02; // Up
-    }
-    HIDsendBuffer[5] = 0b0000111;
-    RawHID.write(HIDsendBuffer, sizeof(HIDsendBuffer));
+
+  float  rpm = encoder.getRPM();
+  if (rpm > encoder_max_rpm ) {
+    encoder_max_rpm = rpm; // Figure out the max RPM
+  }
+  //    Serial.print("Max encoder rpm"); Serial.print(encoder_max_rpm); Serial.print("Encoder rpm"); Serial.println(rpm);
+  rpm = (rpm * 4) / encoder_max_rpm ;
+  // Serial.print("  Encoder multiply"); Serial.println((int)rpm);
+  if (++rpm > 4) rpm = 4; // Need a value between 1 and 4
+  HIDsendBuffer[1] = (int) rpm;    // Set the speed byte
+  
+  if ( (int)encoder.getDirection() == -1 ) {
+    HIDsendBuffer[3] = 0x01;  // Down
   } else {
-    HIDsendBuffer[3] = 0x00; // Up
+    HIDsendBuffer[3] = 0x02; // Up
+  }
+  
+  if (encoder_pos != new_encoder_pos) {
+    encoder_pos = new_encoder_pos;
+    HIDsendBuffer[5] = 0b0000111; // Send update
+    RawHID.write(HIDsendBuffer, sizeof(HIDsendBuffer));
+    delay(2);
+  } else {
+    HIDsendBuffer[3] = 0x00; // Stop
     HIDsendBuffer[5] = 0b0000111;
     RawHID.write(HIDsendBuffer, sizeof(HIDsendBuffer));
   }
@@ -180,6 +185,7 @@ void loop() {
         digitalWrite(TX_LED, !bitRead(HIDReceive[1], 0));
         digitalWrite(F1_LED, !bitRead(HIDReceive[1], 1));
         digitalWrite(F2_LED, !bitRead(HIDReceive[1], 2));
+        // Serial.print("Command "); Serial.println(HIDReceive[1], HEX); // Looks like the lower three bits are the only ones used
         break;
       case 0x02: // Host requesting firmware version
         Serial.print("Version request: ");
