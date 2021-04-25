@@ -4,7 +4,7 @@ This is a work in progress:
 - Tested with RS-BA1 V1 & V2
 - Switches work and LED's light as they should.
 - Encoder sensitivity can be changed by adjusting a define at the top of the file. 
-- The dial sensitivity on RS-BA1 software has minimal impact (if any) - it does not send anything to the RC-28 that I can see.
+- The dial sensitivity on RS-BA1 software has minimal impact (if any). As far as I can see the slider does not send anything to the RC-28.
 
 Copyright GI1MIC (2021)
 
