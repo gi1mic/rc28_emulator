@@ -138,10 +138,9 @@ The arduino will also appear as a serial COM port on your machine. This means yo
 
 
 ##   **Notes:**
- - This is not a true emulation of the RC-28 as the arduino is configured to emulate both a HID and USB serial device simultaneously. 
- - The RC-28 sends it reports via USB_Interrupt messages but straight HID messages seem to work just fine which is what I am using.
- - Not sure I have the response bit patterns 100% but without a RC-28 I cannot verify them other than testing them against the RS-BA1 software.
- - I do not know if this will work with the IC-7610 but should you try it please let me know what happens.
+ - This is not a true emulation of the RC-28 since the arduino is configured to emulate both a HID and USB serial device simultaneously. Also the RC-28 sends it reports via USB_Interrupt messages but straight HID messages seem to work just fine which is what this code generates.
+ - Not sure I have the response bit patterns 100% correct but without a RC-28 all I can do is test against the RS-BA1 software.
+ - This code has not been tests against with IC-7610 but if you try it please let me know what happens.
  - A big thank you Philippe for his help in this project. Without his help I would never have got this to work.
  - The real RC-28 uses a PIC18F14K50 as the processor. Microchip have some application notes and sample code for USB usage so it would probably not be that big a task to port this code to that processor. 
  - I think ICOM use an 128bit AES key for encrypting their firmware updates (at least on newer updates). The PIC processor supports AES in hardware. For that reason it would probably be a waste of time to try modifying my code to dump the PIC firmware from one of their update programs without the AES key.
