@@ -14,6 +14,8 @@
 
 */
 
+#define ENCODER_SENSITIVITY 6     // Reduce this value to make the encoder more responsitive
+
 #define RAWHID_TX_SIZE          64      // transmit packet size
 #define RAWHID_TX_INTERVAL      2       // max # of ms between transmit packets
 #define RAWHID_RX_SIZE          64      // receive packet size
@@ -134,7 +136,7 @@ void loop() {
 
 
   // Process encoder updates
-  new_encoder_pos = encoder.getPosition();
+  new_encoder_pos = encoder.getPosition() / ENCODER_SENSITIVITY;
 
   float  rpm = encoder.getRPM();
   if (rpm > encoder_max_rpm ) {
