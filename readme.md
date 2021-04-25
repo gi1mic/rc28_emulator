@@ -143,6 +143,6 @@ The arduino will also appear as a serial COM port on your machine. This means yo
  - Not sure I have the response bit patterns 100% but without a RC-28 I cannot verify them other than testing them against the RS-BA1 software.
  - I do not know if this will work with the IC-7610 but should you try it please let me know what happens.
  - A big thank you Philippe for his help in this project. Without his help I would never have got this to work.
- - The real RC-28 uses a PIC18F14K50 as the processor. Microchip have some application notes and sample code for USB usage so it would probably not be a big task to port this code to that processor. 
- - I think ICOM use an 128bit AES key for encrypting their firmware updates (at least on newer updates). The PIC processor supports AES in hardware. For that reason it would probably be a waste of time to try modifying my code to dump the PIC firmware from one of their update programs.
+ - The real RC-28 uses a PIC18F14K50 as the processor. Microchip have some application notes and sample code for USB usage so it would probably not be that big a task to port this code to that processor. 
+ - I think ICOM use an 128bit AES key for encrypting their firmware updates (at least on newer updates). The PIC processor supports AES in hardware. For that reason it would probably be a waste of time to try modifying my code to dump the PIC firmware from one of their update programs without the AES key.
 
