@@ -99,9 +99,9 @@ Copyright GI1MIC (2021)
 
 
   further down the file (around line 536 change)
-`return USB_SendStringDescriptor((uint8_t*)name, strlen(name), 0);`
+  	`return USB_SendStringDescriptor((uint8_t*)name, strlen(name), 0);`
   to
-`return USB_SendStringDescriptor((uint8_t*)"RC-28 0102001", strlen("RC-28 0102001"), 0);`
+	`return USB_SendStringDescriptor((uint8_t*)"RC-28 0102001", strlen("RC-28 0102001"), 0);`
 
 Going by the manual the serial number should be in the format "02XXXXX" but I do not think it is checked.
 
@@ -113,19 +113,19 @@ You can always select "Arduino Leonardo - ETH" as the target if you want to re-u
 
 ##   **Wiring:**
 
- - VCC Encoder red 
+ - VCC  Encoder red 
  - PIN2 Encoder White    (This pin must be used for encoder interrupts)
  - PIN3 Encoder Green    (This pin must be used for encoder interrupts) 
- - GND Encoder Black
- - GND Encoder Shield
+ - GND  Encoder Black
+ - GND  Encoder Shield
  
    
- - PIN8 F1 Button
- - PIN9 F1 LED
- - PIN4 F2 Button
- - PIN 5F2 LED
- - PIN 6 TX Button
- - PIN7 TX LED
+ - PIN8  F1 Button
+ - PIN9  F1 LED
+ - PIN4  F2 Button
+ - PIN5  F2 LED
+ - PIN6  TX Button
+ - PIN7  TX LED
 
 The other side of the buttons and LED's go to GND
 
