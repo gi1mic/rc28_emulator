@@ -1,9 +1,10 @@
 
 # **ICOM RC-28 Emulator**
 This is a work in progress:
-- The RS-BA1 responds to the emulated encoder.
+- Tested with RS-BA1 V1 & V2
 - Switches work and LED's light as they should.
-- The encoder is probably a little too sensitive. Note the dial sensitivity on RS-BA1 software has minimal impact - it does not send anything to the RC-28 that I can see.
+- Encoder sensitivity can be changed by adjusting a define at the top of the file. 
+- The dial sensitivity on RS-BA1 software has minimal impact (if any) - it does not send anything to the RC-28 that I can see.
 
 Copyright GI1MIC (2021)
 
