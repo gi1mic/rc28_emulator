@@ -1,8 +1,9 @@
 
 # **ICOM RC-28 Emulator**
 This is a work in progress:
-- The RS-BA1 responds to the emulated encoder and switches and LED's light as they should.
-- What is not 100% is fast rotation of the encoder. This is simply because I have not figured out a good way to calculate the required accelerated value.    
+- The RS-BA1 responds to the emulated encoder.
+- Switches work and LED's light as they should.
+- The encoder is probably a little too sensitive. Note the dial sensitivity on RS-BA1 software has minimal impact - it does not send anything to the RC-28 that I can see.
 
 Copyright GI1MIC (2021)
 
@@ -112,8 +113,8 @@ You can always select "Arduino Leonardo - ETH" as the target if you want to re-u
 ##   **Wiring:**
 
  - VCC Encoder red 
- - PIN2 Encoder White 
- - PIN3 Encoder Green 
+ - PIN2 Encoder White    (This pin must be used for encoder interrupts)
+ - PIN3 Encoder Green    (This pin must be used for encoder interrupts) 
  - GND Encoder Black
  - GND Encoder Shield
  
