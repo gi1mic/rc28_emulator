@@ -1,5 +1,3 @@
-
-
 /*
    Copyright GI1MIC (2021)
 
@@ -9,8 +7,8 @@
 
     RC-28 Emulator
 
-    Check the readme for important info on the USB VID/PID
-    and USB descriptors.
+    Check the readme for important info on setting 
+    the USB VID/PID and USB descriptors.
 
 */
 
@@ -25,31 +23,31 @@
 #include "HID-Project.h"
 
 // This is a work-in-progress
-// Responses always consist of 6 bytes terminated with ASCII "210"
-// Byte 0 is the response type
+// Responses always consist of 5 bytes terminated with ASCII "210"
+// The first byte (Byte0) is the response type
 
 // Response 0x01
-// Byte 0 0x01
-// Byte 1 An encoder "accelerator". Can be set to 0x01, 0x02, 0x03, 0x04
-// Byte 2 0x00 // Delimiter
-// Byte 3 0x00 No movement, toggle between 0x01 & 0x02 to move dial
-// Byte 4 0x00 // Delimiter
-// Byte 5 Button/status update
-// Byte 6 ASCII '2' // Would guess the developer filled the buffer with 7,6,5,4,3,2,1,0 to aid debugging
-// Byte 7 ASCII '1'
-// Byte 8 ASCII '0'
+// Byte0 0x01
+// Byte1 An encoder "accelerator". Can be set to 0x01, 0x02, 0x03, 0x04
+// Byte2 0x00 // Delimiter
+// Byte3 0x00 No movement, toggle between 0x01 & 0x02 to move dial
+// Byte4 0x00 // Delimiter
+// Byte5 Button/status update
+// Byte6 ASCII '2' // Would guess the developer filled the buffer with 7,6,5,4,3,2,1,0 to aid debugging
+// Byte7 ASCII '1'
+// Byte8 ASCII '0'
 // everything else 0x00
 
 // Response 0x02
-// Byte 0 0x02
-// Byte 1 0x31  // 1
-// Byte 2 0x30  // 0
-// Byte 3 0x32  // 2
-// Byte 4 0x20  // Space
-// Byte 5 0x33  // 3 // // Would guess the developer filled the buffer with 7,6,5,4,3,2,1,0 to aid debugging
-// Byte 6 0x32  // 2
-// Byte 7 0x31  // 1
-// Byte 8 0x30  // 0
+// Byte0 0x02
+// Byte1 0x31  // 1
+// Byte2 0x30  // 0
+// Byte3 0x32  // 2
+// Byte4 0x20  // Space
+// Byte5 0x33  // 3 // // Would guess the developer filled the buffer with 7,6,5,4,3,2,1,0 to aid debugging
+// Byte6 0x32  // 2
+// Byte7 0x31  // 1
+// Byte8 0x30  // 0
 // everything else 0x00
 
 #define RESPONSE_SW_VERSION   "\x02\x31\x30\x32\x20\x33\x32\x31\x30\x00"    // Version 1.02
@@ -183,23 +181,29 @@ void loop() {
     HIDReceivePtr = 0;
 
     switch (HIDReceive[0]) {
-      case 0x01: // Host command (Set leds and ?)
+      case 0x01: // Host command to write the LED status using a bitfield
         digitalWrite(TX_LED, !bitRead(HIDReceive[1], 0));
         digitalWrite(F1_LED, !bitRead(HIDReceive[1], 1));
         digitalWrite(F2_LED, !bitRead(HIDReceive[1], 2));
         // Serial.print("Command "); Serial.println(HIDReceive[1], HEX); // Looks like the lower three bits are the only ones used
         break;
-      case 0x02: // Host requesting firmware version
+        
+      case 0x02: // Host requesting firmware version - this is the first command RS-BA1 sends
         Serial.print("Version request: ");
         strcpy(HIDsendBuffer, RESPONSE_SW_VERSION);
         RawHID.write(HIDsendBuffer, sizeof(HIDsendBuffer));
-        memcpy(HIDsendBuffer, RESPONSE_DEFAULT, sizeof(RESPONSE_DEFAULT));
+        memcpy(HIDsendBuffer, RESPONSE_DEFAULT, sizeof(RESPONSE_DEFAULT)); // Setup the send buffer for all future responses
         break;
-      case 0x06: // Host wants to send firmware update (Not sure how to respond to this - thing versions after 1.01 use PIC AES encryption)
+        
+      case 0x06: // Host wants to send firmware update 
+                 // Not sure how to respond to this. I think updaters after V1.01 send AES encrypted firmware to the PIC18F14K50 which 
+                 // then uses a 128bit key/AES hardware in the PIC18F14K50 to decode and reflash the PIC18F14K50. 
+                 // Microchip have an application note on how to do this to protect the PIC18F14K50 firmware.
         Serial.println("Firmware update request");
         strcpy(HIDsendBuffer, "\x02               ");
         RawHID.write(HIDsendBuffer, sizeof(HIDsendBuffer));
         break;
+        
       default: // Unknown host request
         Serial.println("Unknown request");
         for (int i = 0; i < sizeof(HIDReceive); i++) {
