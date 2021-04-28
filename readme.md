@@ -103,12 +103,12 @@ Copyright GI1MIC (2021)
   to<br>
 	`return USB_SendStringDescriptor((uint8_t*)"RC-28 0102001", strlen("RC-28 0102001"), 0);`<br>
 
-Going by the manual the serial number should be in the format "02XXXXX" but I do not think it is checked.
+Going by the manual the serial number should be in the format "02XXXXX" but I do not think it is actually checked or used other than for display.
 
 If you restart the Arduino IDE you should now have a new custom board type called "Arduino Leonardo - RC-28".
 	Select this and upload the result to a standard Adruino Pro Micro.
 	
-You can always select "Arduino Leonardo - ETH" as the target if you want to re-use the board on another project.
+You can always select "Arduino Leonardo - ETH" as a target if you want to re-use the board on another project.
 
 
 ##   **Wiring:**
