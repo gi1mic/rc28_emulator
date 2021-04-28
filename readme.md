@@ -99,7 +99,7 @@ Copyright GI1MIC (2021)
 
 
   further down the file (around line 536 change)<br>
-  	`return USB_SendStringDescriptor((uint8_t*)name, strlen(name), 0);`
+  	`return USB_SendStringDescriptor((uint8_t*)name, strlen(name), 0);`<br>
   to<br>
 	`return USB_SendStringDescriptor((uint8_t*)"RC-28 0102001", strlen("RC-28 0102001"), 0);`<br>
 
