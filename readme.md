@@ -117,13 +117,12 @@ You can always select "Arduino Leonardo - ETH" as a target if you want to re-use
  - PIN2 Encoder White    (This pin must be used for encoder interrupts)
  - PIN3 Encoder Green    (This pin must be used for encoder interrupts) 
  - GND  Encoder Black
- - GND  Encoder Shield
+ - GND  Encoder Shield<br>
  
-   
  - PIN8  F1 Button
- - PIN9  F1 LED
+ - PIN9  F1 LED<br>
  - PIN4  F2 Button
- - PIN5  F2 LED
+ - PIN5  F2 LED<br>
  - PIN6  TX Button
  - PIN7  TX LED
 
