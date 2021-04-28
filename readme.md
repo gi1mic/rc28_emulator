@@ -15,11 +15,11 @@ Copyright GI1MIC (2021)
    
 ##    **Required Hardware:**
    
--    3 x Arduino Pro Mini (32u4, 16Mhz, 5V version)
--    3 x momentary push-to-make buttons to act as TX, F1 and F2
--    3 x LED's to show TX, F1, F2 status
--    1 x Optical encoder (5V-24V 600P/R with 6mm shaft)
--    1 x ~30mm knob for 6mm shaft (preferably the machined aluminum type for mass)
+-    3 x Arduino Pro Mini (32u4, 16Mhz, 5V version) (~£20 for three - search Amazon for 32u4 arduino)
+-    3 x momentary push-to-make buttons to act as TX, F1 and F2 (From £6 each - search Amazon for HALJIA 16mm Red Ring Led Metal Momentary Push Button. Inc's LEDs)
+-    3 x LED's to show TX, F1, F2 status 
+-    1 x Optical encoder (5V-24V 600P/R with 6mm shaft) (From £9 - search Amazon for 600p/r encoder)
+-    1 x ~30mm knob for 6mm shaft (preferably the machined aluminum type for mass) (From £8 - try searching Amazon for aluminium tuning knob 30mm)
 -    1 x enclosure of choice
 
 ##   **Installation:**
