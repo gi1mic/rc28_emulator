@@ -121,10 +121,12 @@ You can always select "Arduino Leonardo - ETH" as a target if you want to re-use
  
  - PIN8  F1 Button
  - PIN9  F1 LED<br>
+
  - PIN4  F2 Button
  - PIN5  F2 LED<br>
+ 
  - PIN6  TX Button
- - PIN7  TX LED
+ - PIN7  TX LED<br>
 
 The other side of the buttons and LED's go to GND
 
