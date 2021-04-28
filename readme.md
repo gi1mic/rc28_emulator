@@ -34,7 +34,7 @@ Copyright GI1MIC (2021)
   
   Now download the provided source file and place it under the portable folder in "portable\sketchbook\rc28_emulator". At this point, if you select "Arduino Leonardo" as the target platform you should be able to compile the code as a quick test.
   
-  If all is well exit the IDE and add the following to hardware\arduino\avr\boards.txt (just after the Leonardo section) to create a "new" board variation that reports the necessary device name and USB VID/PID
+  If all is well exit the IDE and insert the following to hardware\arduino\avr\boards.txt (just after the Leonardo section) to create a "new" board variation that reports the necessary device name and USB VID/PID
 
 	  //##############################################################
 	  leonardo.name=Arduino Leonardo - RC-28
@@ -75,7 +75,7 @@ Copyright GI1MIC (2021)
 	  leonardo.build.extra_flags={build.usb_flags}
 
 
-  Now modify hardware\arduino\avr\cores\arduino\USBcore.cpp and change the #if section at the top of the file to the following:
+  Now modify hardware\arduino\avr\cores\arduino\USBcore.cpp and change the #if section at the top of the file to match the following:
 
 	  #if USB_VID == 0x2341
 	  #  if defined(USB_MANUFACTURER)
@@ -98,10 +98,10 @@ Copyright GI1MIC (2021)
 	  #endif
 
 
-  further down the file (around line 536 change)
+  further down the file (around line 536 change)<br>
   	`return USB_SendStringDescriptor((uint8_t*)name, strlen(name), 0);`
-  to
-	`return USB_SendStringDescriptor((uint8_t*)"RC-28 0102001", strlen("RC-28 0102001"), 0);`
+  to<br>
+	`return USB_SendStringDescriptor((uint8_t*)"RC-28 0102001", strlen("RC-28 0102001"), 0);`<br>
 
 Going by the manual the serial number should be in the format "02XXXXX" but I do not think it is checked.
 
