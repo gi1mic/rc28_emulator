@@ -110,7 +110,7 @@ Going by the manual the serial number should be in the format "02XXXXX" but I do
 If you restart the Arduino IDE you should now have a new custom board type called "Arduino Leonardo - RC-28".
 	Select this and upload the result to a standard Adruino Pro Micro.
 	
-<img src="https://github.com/gi1mic/rc28_emulator/blob/main/images/Settings.png?raw=true" width=30%>
+<img src="https://github.com/gi1mic/rc28_emulator/blob/main/images/Settings.png?raw=true" width=50% alt="centered image" >
 	
 You can always select "Arduino Leonardo - ETH" as a target if you want to re-use the board on another project.
 
