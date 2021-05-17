@@ -75,6 +75,10 @@ unsigned int counter = 0;
 
 unsigned long  encoder_max_rpm = 0;
 
+// The encoder type below may need to be changed, these are the possible options: 
+// FOUR3 = 1, // 4 steps, Latch at position 3 only (compatible to older versions)
+// FOUR0 = 2, // 4 steps, Latch at position 0 (reverse wirings)
+// TWO03 = 3  // 2 steps, Latch at position 0 and 3 
 RotaryEncoder encoder(ENCODER_PIN1, ENCODER_PIN2, RotaryEncoder::LatchMode::TWO03);
 
 uint8_t Raw_HID_Buffer[80];
