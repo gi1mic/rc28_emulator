@@ -7,8 +7,7 @@
 
     RC-28 Emulator
 
-    Check the readme for important info on setting 
-    the USB VID/PID and USB descriptors.
+    Check the readme for important info on setting the USB VID/PID and USB descriptors.
 
 */
 
@@ -52,6 +51,7 @@
 
 #define RESPONSE_SW_VERSION   "\x02\x31\x30\x32\x20\x33\x32\x31\x30\x00"    // Version 1.02
 #define RESPONSE_DEFAULT      "\x01\x01\x00\x00\x00\x00\x32\x31\x30\x00"    // Used to fill the send buffer
+#define RESPONSE_FIRMWAREUPDATE "\x02               "
 
 #define F1_MOMENTARY  0b01111101  // Latch versions also seem to exist
 #define F2_MOMENTARY  0b00000011
@@ -190,8 +190,8 @@ void loop() {
         
       case 0x02: // Host requesting firmware version - this is the first command RS-BA1 sends
         Serial.print("Version request: ");
-        strcpy(HIDsendBuffer, RESPONSE_SW_VERSION);
-        RawHID.write(HIDsendBuffer, sizeof(HIDsendBuffer));
+        memcpy(HIDsendBuffer, RESPONSE_SW_VERSION, sizeof(RESPONSE_SW_VERSION));
+        RawHID.write(HIDsendBuffer, 64 );
         memcpy(HIDsendBuffer, RESPONSE_DEFAULT, sizeof(RESPONSE_DEFAULT)); // Setup the send buffer for all future responses
         break;
         
@@ -200,8 +200,8 @@ void loop() {
                  // then uses a 128bit key/AES hardware in the PIC18F14K50 to decode and reflash the PIC18F14K50. 
                  // Microchip have an application note on how to do this to protect the PIC18F14K50 firmware.
         Serial.println("Firmware update request");
-        strcpy(HIDsendBuffer, "\x02               ");
-        RawHID.write(HIDsendBuffer, sizeof(HIDsendBuffer));
+        memcpy(HIDsendBuffer, RESPONSE_FIRMWAREUPDATE,sizeof(RESPONSE_FIRMWAREUPDATE));
+        RawHID.write(HIDsendBuffer, 64);
         break;
         
       default: // Unknown host request
