@@ -34,6 +34,8 @@ Copyright GI1MIC (2021)
   
   Now download the provided source file and place it under the portable folder in "portable\sketchbook\rc28_emulator". At this point, if you select "Arduino Leonardo" as the target platform you should be able to compile the code as a quick test.
   
+  NOTE: I have included the modified files for Version 1.8.13 of the Arduino IDE for reference. If you are using the same version you can just replace the installed version with the provided ones. Otherwise please edit the versions that came with you IDE based on the following.
+  
   If all is well exit the IDE and insert the following to hardware\arduino\avr\boards.txt (just after the Leonardo section) to create a "new" board variation that reports the necessary device name and USB VID/PID
 
 	  //##############################################################
