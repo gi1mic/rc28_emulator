@@ -32,6 +32,8 @@ Copyright GI1MIC (2021)
   
   Next install the "HID-Project" library by NicoHood (https://github.com/NicoHood/HID) and the "Rotaryencoder" library by mathertel (https://github.com/mathertel/RotaryEncoder). Both are available via the standard Arduino library manager.
   
+  Once installed they should appear as directories under portable\sketchbook\libraries called HID-Project and RotaryEncoder.
+  
   Now download the provided source file and place it under the portable folder in "portable\sketchbook\rc28_emulator". At this point, if you select "Arduino Leonardo" as the target platform you should be able to compile the code as a quick test.
   
   NOTE: I have included the modified files for Version 1.8.13 of the Arduino IDE for reference. If you are using the same version you can just replace the installed version with the provided ones. Otherwise please edit the versions that came with you IDE based on the following.
